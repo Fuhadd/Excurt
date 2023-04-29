@@ -1,7 +1,7 @@
 import 'dart:io';
 
-class UserImageResponseModel {
-  UserImageResponseModel({
+class UserImageApiResponseModel {
+  UserImageApiResponseModel({
     this.id = 0,
     this.name = "",
     this.image,
@@ -11,8 +11,8 @@ class UserImageResponseModel {
   String name;
   File? image;
 
-  factory UserImageResponseModel.fromJson(Map<String, dynamic> json) =>
-      UserImageResponseModel(
+  factory UserImageApiResponseModel.fromJson(Map<String, dynamic> json) =>
+      UserImageApiResponseModel(
         id: json["id"] ?? "",
         name: json["name"] ?? 0,
         image: json["image"] ?? 0,

@@ -28,6 +28,7 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  appinio_swiper: ^2.0.0
   connectivity_plus: ^3.0.3
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
@@ -53,6 +54,7 @@ dependencies:
   shared_preferences: ^2.1.0
   smooth_page_indicator: ^1.0.1
   step_progress_indicator: ^1.0.2
+  swipeable_card_stack: ^0.0.5
 
 dev_dependencies:
   flutter_lints: ^2.0.0

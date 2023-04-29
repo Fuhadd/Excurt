@@ -47,7 +47,7 @@ class _SignupImageScreenState extends ConsumerState<SignupImageScreen> {
   String? imageId;
   // String? _base64Image;
 
-  Future<UserImageResponseModel?> _pickImage(
+  Future<UserImageApiResponseModel?> _pickImage(
       File? imageFile, SignupViewModel signUpVM) async {
     final picker = ImagePicker();
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
@@ -59,7 +59,8 @@ class _SignupImageScreenState extends ConsumerState<SignupImageScreen> {
       String base64Image = base64Encode(imageFile!.readAsBytesSync());
       await signUpVM.uploadUserImage(
           pickedFile.name, pickedFile.path, base64Image);
-      return UserImageResponseModel(id: signUpVM.userImageId, image: imageFile);
+      return UserImageApiResponseModel(
+          id: signUpVM.userImageId, image: imageFile);
       // return imageFile;
     }
     return null;
