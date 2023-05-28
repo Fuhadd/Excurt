@@ -1,7 +1,10 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:escurt/models/user_data.dart';
+import 'package:escurt/models/user_images_response.dart';
 import 'package:escurt/screens/dashboard/dashboard_screen.dart';
 import 'package:escurt/screens/register/signup_dob_screen.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../Constants/custom_string.dart';
@@ -63,6 +66,8 @@ class SignupViewModel extends BaseChangeNotifier {
     _isimageLoading = isimageLoading;
     notifyListeners();
   }
+
+  FirebaseStorage firebaseStorage = FirebaseStorage.instance;
 
   Future<void> signIn(email, password, {BuildContext? context}) async {
     try {
@@ -339,14 +344,31 @@ class SignupViewModel extends BaseChangeNotifier {
     }
   }
 
-  Future<void> uploadUserImage(String name, String contentType, String base64,
+  Future<UserImageRequestModel> getImageUrl(File image, String id) async {
+    Reference ref = firebaseStorage.ref().child('exurt/$id/images');
+    await ref.putFile(image);
+
+    image.length();
+    String downloadedUrl = await ref.getDownloadURL();
+    int imageSize = await image.length();
+    UserImageRequestModel result = UserImageRequestModel(
+      name: ref.name,
+      imageUrl: downloadedUrl,
+      imageSize: imageSize,
+    );
+
+    return result;
+  }
+
+  Future<void> uploadUserImage(String id, File image,
       {BuildContext? context}) async {
     try {
       isImageLoading = true;
+      var imageUrlDetails = await getImageUrl(image, id);
       final res = await userRepository.uploadUserImage(
-        name,
-        contentType,
-        base64,
+        imageUrlDetails.name,
+        imageUrlDetails.imageUrl,
+        imageUrlDetails.imageSize,
       );
 
       if (res.success) {

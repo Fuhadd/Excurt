@@ -4,7 +4,7 @@ import '../Constants/custom_colors.dart';
 import 'custom_dimensions.dart';
 
 class CustomStyle {
-  static const defaultFont = "Satoshi";
+  static const defaultFont = "Roboto";
 
   static const textStyleBold = TextStyle(
     fontSize: CustomDimensions.bigTextSize,
@@ -34,7 +34,7 @@ class CustomStyle {
     color: CustomColors.blackColor,
   );
 
-  static final textStyleBold4 = const TextStyle(
+  static const textStyleBold4 = TextStyle(
     fontSize: CustomDimensions.big2TextSize,
     fontWeight: FontWeight.w700,
     fontFamily: defaultFont,

@@ -2,16 +2,22 @@ import 'package:escurt/screens/onboarding/onboarding_page_view.dart';
 import 'package:escurt/utils/environment_config.dart';
 import 'package:escurt/utils/navigator_handler.dart';
 import 'package:escurt/utils/routes.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+import 'firebase_options.dart';
 import 'globals.dart';
 import 'locator.dart';
 import 'style/custom_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   await loadEnvFile(path: ".env.dev");
   await dotenv.load(fileName: ".env.dev");
   await setupLocator();
@@ -36,7 +42,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       routes: appRoutes,
       navigatorKey: locator<NavigationHandler>().navigatorKey,
-      title: 'Flutter Demo',
+      title: 'Excurt',
       theme: AppTheme.defaultAppTheme,
       // home: const DashboardScreen(),
       home: const OnboardingPageView(),

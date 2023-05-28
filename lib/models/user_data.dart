@@ -2,6 +2,7 @@ import 'package:escurt/models/user_images_response.dart';
 
 class UserDataModel {
   UserDataModel({
+    this.id = 0,
     this.firstName = "",
     this.lastName = "",
     this.gender = "",
@@ -15,6 +16,7 @@ class UserDataModel {
     this.userImages = const [],
   });
 
+  int id;
   String firstName;
   String lastName;
   String gender;
@@ -39,6 +41,7 @@ class UserDataModel {
         interests: json["interests"] ?? "",
         onboardingStep: json["onboardingStep"] ?? 0,
         age: json["age"] ?? 0,
+        id: json["id"] ?? 0,
         userImages: (json["userImages"] as List<dynamic>?)
                 ?.map((e) => UserImageResponseModel.fromJson(e))
                 .toList() ??
@@ -56,6 +59,7 @@ class UserDataModel {
         "interests": interests,
         "onboardingStep": onboardingStep,
         "age": age,
+        "id": id,
         "userImages": userImages,
       };
 }

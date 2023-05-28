@@ -57,8 +57,7 @@ class _SignupImageScreenState extends ConsumerState<SignupImageScreen> {
         imageFile = File(pickedFile.path);
       });
       String base64Image = base64Encode(imageFile!.readAsBytesSync());
-      await signUpVM.uploadUserImage(
-          pickedFile.name, pickedFile.path, base64Image);
+      await signUpVM.uploadUserImage(pickedFile.name, imageFile!);
       return UserImageApiResponseModel(
           id: signUpVM.userImageId, image: imageFile);
       // return imageFile;

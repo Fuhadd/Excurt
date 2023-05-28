@@ -1,12 +1,9 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:escurt/Constants/custom_colors.dart';
-import 'package:escurt/models/images_api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:image_picker/image_picker.dart';
 
 import '../../utils/spacers.dart';
 import '../../widgets/custom_button.dart';
@@ -45,25 +42,6 @@ class _SignupInterestScreenState extends ConsumerState<SignupInterestScreen> {
   String? _imageId8;
   String? imageId;
   // String? _base64Image;
-
-  Future<UserImageApiResponseModel?> _pickImage(
-      File? imageFile, SignupViewModel signUpVM) async {
-    final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
-
-    if (pickedFile != null) {
-      setState(() {
-        imageFile = File(pickedFile.path);
-      });
-      String base64Image = base64Encode(imageFile!.readAsBytesSync());
-      await signUpVM.uploadUserImage(
-          pickedFile.name, pickedFile.path, base64Image);
-      return UserImageApiResponseModel(
-          id: signUpVM.userImageId, image: imageFile);
-      // return imageFile;
-    }
-    return null;
-  }
 
   final List<dynamic> _interests = [
     'Cooking',

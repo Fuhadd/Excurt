@@ -131,73 +131,94 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen> {
         // )
       ),
 
-      bottomNavBar: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40.0),
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          elevation: 0,
-          selectedItemColor: CustomColors.mainPinkColor,
-          unselectedItemColor: CustomColors.navBarGrey,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          selectedFontSize: 14,
-          unselectedFontSize: 13,
-          backgroundColor: CustomColors.whiteColor,
-          // selectedLabelStyle: TextStyle(
-          //   fontSize: 12.sp,
-          //   fontWeight: FontWeight.w500,
-          //   color: CustomColors.deepGoldColor,
-          // ),
-          // unselectedLabelStyle: TextStyle(
-          //   fontSize: 12.sp,
-          //   fontWeight: FontWeight.w500,
-          //   color: CustomColors.grayBackgroundColor,
-          // ),
-          currentIndex: menuIndex,
-          onTap: (i) {
-            ref.read(indexProvider.notifier).state = i;
-          },
-          items: [
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/explore_icon.svg',
-                height: 30,
-                // color: CustomColors.navBarGrey
+      bottomNavBar: Row(
+        children: [
+          Expanded(
+            child: Container(
+              color: CustomColors.whiteColor,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  // margin: const EdgeInsets.symmetric(horizontal: 40.0),
+                  child: BottomNavigationBar(
+                    type: BottomNavigationBarType.fixed,
+                    elevation: 0,
+                    selectedItemColor: CustomColors.mainPinkColor,
+                    unselectedItemColor: const Color.fromARGB(255, 65, 37, 37),
+                    showSelectedLabels: true,
+                    showUnselectedLabels: true,
+                    selectedFontSize: 14,
+                    unselectedFontSize: 13,
+                    backgroundColor: CustomColors.whiteColor,
+                    // selectedLabelStyle: TextStyle(
+                    //   fontSize: 12.sp,
+                    //   fontWeight: FontWeight.w500,
+                    //   color: CustomColors.deepGoldColor,
+                    // ),
+                    // unselectedLabelStyle: TextStyle(
+                    //   fontSize: 12.sp,
+                    //   fontWeight: FontWeight.w500,
+                    //   color: CustomColors.grayBackgroundColor,
+                    // ),
+                    currentIndex: menuIndex,
+                    onTap: (i) {
+                      ref.read(indexProvider.notifier).state = i;
+                    },
+                    items: [
+                      BottomNavigationBarItem(
+                        icon: SvgPicture.asset(
+                          'assets/icons/explore_icon.svg',
+                          height: 30,
+                          // color: CustomColors.navBarGrey
+                        ),
+                        label: '',
+                        activeIcon: SvgPicture.asset(
+                            'assets/icons/explore_icon.svg',
+                            height: 32,
+                            color: CustomColors.mainPinkColor),
+                      ),
+                      BottomNavigationBarItem(
+                        icon: SvgPicture.asset(
+                          'assets/icons/discover_icon.svg',
+                          height: 30,
+                        ),
+                        label: '',
+                        activeIcon: SvgPicture.asset(
+                            'assets/icons/discover_icon.svg',
+                            height: 32,
+                            color: CustomColors.mainPinkColor),
+                      ),
+                      BottomNavigationBarItem(
+                        icon: SvgPicture.asset(
+                          'assets/icons/message_icon.svg',
+                          height: 30,
+                        ),
+                        label: '',
+                        activeIcon: SvgPicture.asset(
+                            'assets/icons/message_icon.svg',
+                            height: 32,
+                            color: CustomColors.mainPinkColor),
+                      ),
+                      BottomNavigationBarItem(
+                        icon: SvgPicture.asset(
+                          'assets/icons/profile_icon.svg',
+                          height: 30,
+                          // color: CustomColors.greyColor
+                        ),
+                        label: '',
+                        activeIcon: SvgPicture.asset(
+                            'assets/icons/profile_icon.svg',
+                            height: 32,
+                            color: CustomColors.mainPinkColor),
+                      ),
+                    ],
+                  ),
+                ),
               ),
-              label: '',
-              activeIcon: SvgPicture.asset('assets/icons/explore_icon.svg',
-                  height: 32, color: CustomColors.mainPinkColor),
             ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/discover_icon.svg',
-                height: 30,
-              ),
-              label: '',
-              activeIcon: SvgPicture.asset('assets/icons/discover_icon.svg',
-                  height: 32, color: CustomColors.mainPinkColor),
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/message_icon.svg',
-                height: 30,
-              ),
-              label: '',
-              activeIcon: SvgPicture.asset('assets/icons/message_icon.svg',
-                  height: 32, color: CustomColors.mainPinkColor),
-            ),
-            BottomNavigationBarItem(
-              icon: SvgPicture.asset(
-                'assets/icons/profile_icon.svg',
-                height: 30,
-                // color: CustomColors.greyColor
-              ),
-              label: '',
-              activeIcon: SvgPicture.asset('assets/icons/profile_icon.svg',
-                  height: 32, color: CustomColors.mainPinkColor),
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
       builder: ((size) {
         return pages[menuIndex];

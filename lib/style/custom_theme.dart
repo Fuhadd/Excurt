@@ -19,7 +19,7 @@ class AppTheme {
         color: CustomColors.blackColor,
         fontSize: 15,
         fontWeight: FontWeight.w700,
-        fontFamily: 'Satoshi',
+        fontFamily: 'Roboto',
       ),
       iconTheme: IconThemeData(color: CustomColors.blackColor),
       actionsIconTheme: IconThemeData(color: CustomColors.blackColor),

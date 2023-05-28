@@ -13,4 +13,6 @@ class ApiEndpoints {
 
   //MATCHES
   static const getUsersForMatching = "Matches/get-all-users-for-matching";
+  static const likeUser = "Matches/like-user";
+  static const disLikeUser = "Matches/dislike-user";
 }

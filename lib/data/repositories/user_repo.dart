@@ -19,12 +19,15 @@ abstract class UserRepository {
   Future<GenericResponse> uploadUserName(String firstName, lastName);
   Future<GenericResponse> uploadDateOfBirth(String dateOfbirth);
   Future<GenericResponse> uploadGender(String gender);
-  Future<GenericResponse> uploadUserImage(String name, contentType, base64);
+  Future<GenericResponse> uploadUserImage(
+      String name, String imageUrl, int imageSize);
   Future<GenericResponse> deleteUserImage(int imageId);
   Future<GenericResponse> uploadUserInterests(String interests);
 
   //MATCHES
   Future<GenericResponse> getUsersForMatching(int pageNumber, int pageSize);
+  Future<GenericResponse> likeUser(int likedUserId);
+  Future<GenericResponse> disLikeUser(int disLikedUserId);
 
   Future<GenericResponse> prelaunch();
   Future<GenericResponse> getContactInfo();
@@ -132,11 +135,11 @@ class UserRepositoryImpl extends ApiService implements UserRepository {
 
   @override
   Future<GenericResponse> uploadUserImage(
-      String name, contentType, base64) async {
+      String name, String imageUrl, int imageSize) async {
     var requestData = {
       "name": name,
-      "contentType": contentType,
-      "base64": base64,
+      "imageUrl": imageUrl,
+      "imageSize": imageSize,
     };
     var res = await patch(ApiEndpoints.uploadUserImage,
         data: requestData, useToken: true);
@@ -173,7 +176,26 @@ class UserRepositoryImpl extends ApiService implements UserRepository {
   Future<GenericResponse> getUsersForMatching(
       int pageNumber, int pageSize) async {
     var res = await get(
-      "${ApiEndpoints.getUsersForMatching}?PageNumber=$pageNumber&PageSize=$pageNumber",
+      "${ApiEndpoints.getUsersForMatching}?PageNumber=$pageNumber&PageSize=$pageSize",
+      //get-all-users-for-matching?PageNumber=1&PageSize=3
+      useToken: true,
+    );
+    return GenericResponse.fromJson(res);
+  }
+
+  @override
+  Future<GenericResponse> likeUser(int likedUserId) async {
+    var res = await get(
+      "${ApiEndpoints.likeUser}?matchedUserId=$likedUserId",
+      useToken: true,
+    );
+    return GenericResponse.fromJson(res);
+  }
+
+  @override
+  Future<GenericResponse> disLikeUser(int disLikedUserId) async {
+    var res = await get(
+      "${ApiEndpoints.disLikeUser}?matchedUserId=$disLikedUserId",
       useToken: true,
     );
     return GenericResponse.fromJson(res);

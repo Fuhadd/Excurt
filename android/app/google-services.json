@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "106564456473",
+    "project_id": "excurt-6c7aa",
+    "storage_bucket": "excurt-6c7aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106564456473:android:1df93f1ddf72c26902da88",
+        "android_client_info": {
+          "package_name": "com.example.escurt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "106564456473-d94ujhi50tvrts8395fqb89q8gad1nqj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgj3_fO6-c4uMOX_CKnbbfU8k0PFnk8k4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "106564456473-d94ujhi50tvrts8395fqb89q8gad1nqj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
